@@ -1,0 +1,10 @@
+﻿@page
+@model ConfirmedEmailModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Confirm email";
+    TempData["StatusMessage"] = Model.StatusMessage;
+}
+<h1>@ViewData["Title"]</h1>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+

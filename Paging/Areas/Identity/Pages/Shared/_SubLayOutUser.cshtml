@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row p-0">
+    <div class="col-sm-3">
+        <div class="container p-0 d-sm-block collapse bg-dark" id="navIconMenu">
+            <h3 class="bg-light my-0 p-2 text-dark border-bottom"><i class="fas fa-cogs"></i> User Account</h3>
+            <ul class="navbar-nav bg-light p-2">
+                <li class="nav-link text-light"><a asp-page="/UserAccount/User" asp-area="Identity">$ User</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="container mt-3">
+            @RenderBody()
+        </div>
+        
+    </div>
+</div>
+
+@RenderSection("Scripts", required: false)

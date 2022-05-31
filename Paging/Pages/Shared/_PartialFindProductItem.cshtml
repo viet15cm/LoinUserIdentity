@@ -1,0 +1,23 @@
+﻿@using Paging.Services
+@inject ProductServices productServices;
+@model int
+@{
+    var products = await productServices.GetFindProductItem(Model);
+}
+
+
+<div class="container">
+    @if (products != null)
+    {
+        <ul class="navbar-nav">
+            @foreach (var item in products)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="#">@item.Name</a>
+                </li>
+            }
+
+        </ul>
+    }
+   
+</div>

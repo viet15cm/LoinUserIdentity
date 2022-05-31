@@ -1,0 +1,32 @@
+﻿@page "/admin/role"
+@model IndexModel
+@{
+    ViewData["Title"] = "Danh Sách Các Role (Vai Trò)";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
+        <div class="mb-2">
+            <a class="btn btn-secondary" asp-page="./Create">Tạo Mới</a>
+        </div>
+        <table class="table table-dark table-striped">
+            <tr>
+                <th>Tên Role</th>
+                <th>Lựa Chọn</th>
+            </tr>
+            @foreach (var item in Model.roles)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <a class="btn btn-success btn-sm" asp-page="./Edit" asp-route-id="@item.Id">Cập Nhật</a>
+                        <a class="btn btn-success btn-sm" asp-page="./Delete" asp-route-id="@item.Id">Xóa</a>
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@page
+@model OnOff2faModel
+@{
+   
+
+}
+
+<div>
+    <div class="card">
+        <h3 class="card-header"><i class="fas fa-shield-alt"></i> Xác thực hai yếu tố</h3>
+        <div class="card-body">
+            <form method="Post" id="Width2fa" asp-page="/Setting/SecurityAndLogin/OnOff2fa" , asp-area="Identity">
+                <div class="mb-2 form-check form-switch">
+                    <input asp-for="input.Check2fa" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="Width2fa()">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"> Bật & Tắc</label>
+                </div>
+            </form>
+            <hr />
+            <partial name="_StatusMessage" for="StatusMessage" />
+        </div>
+    </div>
+    
+</div>
+
+
+    @*<form method="Post" id="Width2fa" asp-page="Setting", asp-area="Identity">
+        <div class="form-group">
+            <label asp-for="input.Check2fa"></label>
+            <select class="form-control" asp-for="input.Check2fa" onchange="Width2fa()">
+                <option value="true">on</option>
+                <option value="false">off</option>
+            </select>
+        </div>        
+    </form>*@
+    @*<hr />
+    <form  method="Post" id="Width2fa" asp-page="/Setting/SecurityAndLogin/OnOff2fa", asp-area="Identity">
+        <div class="form-check form-switch">
+            <input asp-for="input.Check2fa" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="Width2fa()">
+            <label class="form-check-label" for="flexSwitchCheckDefault"> Xác thực hai yếu tố</label>
+        </div>
+    </form> 
+    <hr />
+    <partial name="_StatusMessage" for="StatusMessage"/>*@
+  
+    @*<div id="div1">
+         
+    </div>*@
+    
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    
+        //function Width2fa() {
+        //    document.getElementById("Width2fa").submit();
+
+        //    $(".StatusMessage").html("");
+            
+        //    var form = $('#Width2fa')[0];
+        //    var data = new FormData(form);
+
+        //    $.ajax({                    
+        //        type: "POST",
+        //        url: data.action,
+        //        data: data,
+        //        enctype: 'multipart/form-data', // Important!!!!
+        //        processData: false,  //prevent jQuery transforming the data into a query string
+        //        contentType: false,
+        //        cache: false,
+              
+        //        success: function (result) {
+        //            $("#div1").load("/Identity/Setting/SecurityAndLogin/OnOff2fa?handler=Partial&Message=" + result);
+        //        }
+        //    });
+
+        //}
+       
+</script>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        function Width2fa() {
+            document.getElementById("Width2fa").submit();
+        }
+    </script>
+}

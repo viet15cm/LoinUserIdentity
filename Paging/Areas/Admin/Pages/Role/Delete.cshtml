@@ -1,0 +1,24 @@
+﻿@page "/admin/delete-roler/{id}"
+@model DeleteModel
+@{
+    ViewData["Title"] = "Xao bo role";
+}
+
+@await Html.PartialAsync("_StatusMessage" , Model.StatusMessage)
+
+<div class="row">
+    <div class="col-md-6">
+        <div asp-validation-summary="ModelOnly"></div>
+        <form method="post">
+            <div class="alert alert-info mt-3" role="alert">
+                Bạn có muốn xóa role @Model.Input.Name ??
+            </div>
+            <hr />
+            <input class="btn btn-success" type="submit" value="Xóa"/>
+            <a class="btn btn-danger" asp-page="./index">Hủy</a>
+        </form>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,29 @@
+﻿@using Paging.Services
+
+@inject ItemServices itemServices;
+
+@{
+
+    Func<string, int, string> navLeft = (string datatarget, int i) => datatarget + "navLeft" + i;
+
+    var items = await itemServices.GetAll();
+
+
+}
+
+@for (var i = 0; i < items.Count; i++)
+{
+    
+
+    <li class="nav-item border-bottom border-dark">
+        <a class="nav-link" data-toggle="collapse" data-target="@navLeft("#", @i)"
+           aria-controls="@navLeft(null,@i)" aria-expanded="false" style="cursor: pointer">          
+           <i class="fas fa-caret-down"></i> @items[i].Name
+         </a>
+        <div class="collapse" id="@navLeft(null,@i)">
+            @await Html.PartialAsync("_PartialFindProductItem", items[i].Id )
+        </div>
+    </li>
+
+
+}

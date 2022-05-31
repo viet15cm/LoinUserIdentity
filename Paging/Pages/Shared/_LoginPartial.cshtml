@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Paging.Models
+
+@inject UserManager<AppUser> userManager
+@inject SignInManager<AppUser> signInManager
+@{
+
+    string avatar = null;
+    @if (signInManager.IsSignedIn(User))
+    {
+        var appUser = await userManager.GetUserAsync(User);
+
+        avatar = appUser.UrlImage;
+    }
+}
+
+
+    @if (signInManager.IsSignedIn(User))
+    {
+        
+
+        <li class="nav-item">
+            <div class="dropdown">
+
+                 <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                @if (avatar != null)
+                {
+                    <img class="rounded-circle p-0 , m-0" id="indexImg" src="@Url.Content(avatar)" style="width: 35px; height: 35px" />
+                }
+                else
+                {
+                    <i style="font-size: 20px" class="fas fa-user-tie text-light"></i>
+                }
+
+            </a>
+                <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item btn btn-default" asp-area="Identity" asp-page="/Users/Avartar/UserAvartar" type="button">
+
+                            @if (avatar != null)
+                            {
+                                <img class="rounded-circle p-0 m-0" id="indexImg" src="@Url.Content(avatar)" style="width : 20px; height : 20px" /> @userManager.GetUserName(User)
+                            }
+                            else
+                            {
+                                <i style="font-size: 20px" class="fas fa-user-tie text-light"></i> @userManager.GetUserName(User)
+                            }
+                    </a>
+                    </li>
+                    <li><a class="dropdown-item btn btn-light" asp-area="Identity" asp-page="/Setting/Index" type="button"><i class="fas fa-cog"></i> Setting</a></li>
+                    <li>
+                        <form class="form-inline" asp-area="Identity" asp-page="/UserAccount/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button class="dropdown-item" type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    }
+    else
+    {
+        
+        <li class="nav-item mr-2">
+            <a asp-area="Identity" asp-page="/UserAccount/Login" class="btn btn-sm btn-danger text-light">Login</a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Identity" asp-page="/UserAccount/Register" class="btn btn-sm btn-danger text-light">Register</a>
+        </li>
+    }

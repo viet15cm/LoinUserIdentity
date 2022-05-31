@@ -1,0 +1,32 @@
+﻿@page "/admin/user-role"
+@model IndexModel
+@{
+    ViewData["Title"] = "Danh Sách Các Users";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-dark table-striped">
+            <tr>
+                <th>Tên</th>
+                <th>Vai trò (role)</th>
+                <th>Lựa chọn</th>
+            </tr>
+            @foreach (var item in Model.users)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>
+
+                    </td>
+                    <td>
+                        <a class="btn btn-success" asp-page="./SetPassword" asp-route-id="@item.Id" >Đặt mật khẩu</a>
+                        <a class="btn btn-success" asp-page="./AddRole" asp-route-id="@item.Id">Cập nhật roler</a>                       
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>

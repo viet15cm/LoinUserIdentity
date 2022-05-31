@@ -1,0 +1,32 @@
+﻿@page "/admin/edit-role/{id}"
+@model EditModel
+@{
+    ViewData["Title"] = "Đổi tên Role";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<div class="row">
+    <div class="col-md-6">
+        <div asp-validation-summary="ModelOnly"></div>
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label" asp-for="Input.Name"></label>
+                <input class="form-control" asp-for="Input.Name" />
+                <span asp-validation-for="Input.Name"></span>
+            </div>
+            <hr />
+            <input class="btn btn-success" type="submit" value="Cập nhật" />
+            <a class="btn btn-danger" asp-page="./index">Hủy</a>
+        </form>
+    </div>
+
+
+
+</div>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

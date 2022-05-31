@@ -1,0 +1,18 @@
+﻿@{ 
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row p-0">
+    <div class="col-sm-3">
+        <div class="container p-0 d-sm-block collapse bg-dark" id="navIconMenu">
+            <h3 class="bg-light my-0 p-2 text-danger border-bottom">C# Cơ bản .NetCore </h3>
+            <ul class="navbar-nav bg-light p-2">
+                @await Html.PartialAsync("_PartialItems")
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-9">
+
+        @RenderBody()
+    </div>
+</div>

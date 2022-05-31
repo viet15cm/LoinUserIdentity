@@ -1,0 +1,104 @@
+﻿@using Paging.Services.NavbarServices
+
+@namespace Paging.Services.NavbarServices
+
+@inject IShowItems items
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+
+    var listItems = items.GetItem();
+}
+
+<div class="row p-0">
+    <div class="col-sm-3">
+        <div class="container p-0 d-sm-block collapse bg-dark">
+            <h3 class="bg-light my-0 p-2 text-dark border-bottom"><i class="fas fa-cogs"></i> Setting</h3>
+            <ul class="list-unstyled bg-light p-2">
+                @foreach (var item in listItems)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-black fw-bold" data-bs-toggle="collapse" data-bs-target="#@item.Name" role="button" aria-expanded="false" aria-controls="@item.Name"><i class="@item.Icon"></i> @item.Name</a>
+                        <div class="collapse" id="@item.Name">
+                            <div class="container">
+                                <ul class="navbar-nav">
+                                    @foreach (var itemChildrens in item.itemsChildrens)
+                                    {
+                                        <li class=" nav-item"><a id="@itemChildrens.Name" asp-area="@itemChildrens.UrlArea" asp-page="@itemChildrens.UrlPages" class="ShowBackground align-items-center d-inline-flex nav-link text-dark rounded active px-lg-2">@itemChildrens.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div> 
+    </div>
+    <div class="col-sm-9">
+        <div class="container mt-3">
+            @RenderBody()
+        </div>
+
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    //$(document).ready(function () {
+
+        //$('.show-collapse').click(function () {
+        //    alert(window.location)
+        //});
+        
+        //}
+
+        //$('.show-collapse').click(function () {
+        //    //store the id of the collapsible element
+        //    if (collapseItem == $(this).attr('href')) {
+
+        //        localStorage.removeItem('collapseItem')
+        //        return;
+        //    }
+        //    if (collapseItem) {
+        //        conllapseItemFlag = collapseItem;
+
+        //        $(conllapseItemFlag).collapse('hide');
+        //    }
+
+        //    collapseItem = localStorage.setItem('collapseItem', $(this).attr('href'))
+        //    collapseItem = localStorage.getItem('collapseItem');
+
+        //});
+        //collapseItem = localStorage.getItem('collapseItem');
+        //if (collapseItem) {
+        //    $(collapseItem).collapse('show');
+
+        //}
+
+    $(document).ready(function () {
+        var string = (window.location).toString();
+        var array = string.split("/");
+        var count = 0;
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] == "Setting")
+                count = i;
+        }
+        if (count != 0) {
+            var collapseItem = array[count + 1];
+            var itemChilrend = array[count + 2];
+        }
+         
+        if (collapseItem) {
+            $('#' + collapseItem).collapse('show');
+            $('#' + itemChilrend).addClass('ShowFontColor');
+        }   
+    })
+
+        
+   /*})*/
+
+    
+
+</script>
+
+@RenderSection("Scripts", required: false)

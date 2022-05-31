@@ -1,0 +1,42 @@
+﻿@page 
+@using Paging.PagingModels
+@model IndexModel
+@{
+    
+    ViewData["Title"] = "Home page";
+    var products = Model.products;
+
+    var pagingModel = new UserPaging()
+    {
+
+        CurrentPages = Model.CurrentPage,
+        CountPages = Model.CountPage,
+        GenegateUrl = (int? p) => Url.Page("/index", new { p = p })
+
+
+
+    };
+
+    Func<string, int, string> navLeft = (string datatarget, int i) => datatarget + "navLeft" + i;
+}
+
+<div class="row p-2">
+    @for (var i = 0; i < products.Count; i++)
+    {
+        <div class="col-md-3 mt-2">
+            <div class="card h-100">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Id = @products[i].Id</h5>
+                    <p class="card-text">@products[i].Name</p>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+<div>
+    <partial name="_Paging" model="@pagingModel" />
+</div>
+

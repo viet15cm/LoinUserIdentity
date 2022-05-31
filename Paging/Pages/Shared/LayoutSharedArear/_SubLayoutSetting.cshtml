@@ -1,0 +1,89 @@
+﻿@using Paging.Services.NavbarServices
+
+@namespace Paging.Services.NavbarServices
+
+@inject IShowItems items
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+
+    var listItems = items.GetItem();
+}
+
+<h1></h1>
+<div class="row p-0">
+    <div class="col-sm-3">
+        <div class="container p-0 d-sm-block collapse bg-dark">
+            <h3 class="bg-light my-0 p-2 text-dark border-bottom"><i class="fas fa-cogs"></i> Setting</h3>
+            <ul class="list-unstyled bg-light p-2">
+                @foreach (var item in listItems)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="show-collapse nav-link dropdown-toggle text-black" data-bs-toggle="collapse" href="#@item.Name" role="button" aria-expanded="false" aria-controls="@item.Name"><i class="@item.Icon"></i> @item.Name</a>
+                        <div class="collapse" id="@item.Name">
+                            <div class="container">
+                                <ul class="navbar-nav">
+                                    @foreach (var itemChildrens in item.itemsChildrens)
+                                    {
+                                        <li class="color nav-item"><a asp-area="@itemChildrens.UrlArea" asp-page="@itemChildrens.UrlPages" class="nav-link text-black ">@itemChildrens.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div> 
+    </div>
+    <div class="col-sm-9">
+        <div class="container mt-3">
+            @RenderBody()
+        </div>
+
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" ></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('.show-collapse').click(function () {
+            alert(window.location)
+        });
+        
+        //}
+
+        //$('.show-collapse').click(function () {
+        //    //store the id of the collapsible element
+        //    if (collapseItem == $(this).attr('href')) {
+
+        //        localStorage.removeItem('collapseItem')
+        //        return;
+        //    }
+        //    if (collapseItem) {
+        //        conllapseItemFlag = collapseItem;
+
+        //        $(conllapseItemFlag).collapse('hide');
+        //    }
+
+        //    collapseItem = localStorage.setItem('collapseItem', $(this).attr('href'))
+        //    collapseItem = localStorage.getItem('collapseItem');
+
+        //});
+        //collapseItem = localStorage.getItem('collapseItem');
+        //if (collapseItem) {
+        //    $(collapseItem).collapse('show');
+
+        //}
+
+       
+
+        
+    })
+
+    
+
+</script>
+
+@RenderSection("Scripts", required: false)

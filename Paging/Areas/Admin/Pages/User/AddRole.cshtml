@@ -1,0 +1,32 @@
+﻿@page "/admin/user-addrole"
+@model AddRoleModel
+@{
+    ViewData["Title"] = "Thiết lập vai trò role";
+
+
+}
+
+
+<h4> @ViewData["Title"]</h4>
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="RoleNames"></label>
+                <select class="form-control" asp-for="RoleNames"
+                        asp-items="@(Model.select)">
+                </select>
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Thêm role</button>
+            <a class="btn btn-primary" asp-page="./index">Danh sách các Users</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
